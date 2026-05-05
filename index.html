@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>La Boda del Año | Sofía & Emilio</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Fraunces:opsz,wght@9..144,600;9..144,800&family=Great+Vibes&family=Libre+Baskerville:ital,wght@0,400;1,400;1,700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <main class="poster-shell">
+    <section class="hero" id="inicio">
+      <nav class="nav" aria-label="Navegación principal">
+        <a href="#inicio">Inicio</a>
+        <a href="#historia">Información</a>
+        <a href="#asistencia">Confirma tu asistencia</a>
+      </nav>
+
+      <div class="hero-copy">
+        <img class="wedding-logo" src="assets/logo-boda-del-ano.png" alt="La Boda del Año">
+        <p class="mini-heading">Nos casamos</p>
+        <h2>Marlon <span>&amp;</span> Isa</h2>
+        <p class="tagline">¿Qué se siente que me gustes tanto?</p>
+        <p class="date">28 de noviembre 2026</p>
+        <p class="venue">Hotel Tzanjuyú</p>
+      </div>
+    </section>
+
+    <section class="details" id="historia">
+      <article class="detail-card place">
+        <h3>Lugar <span>✦</span></h3>
+        <img class="hotel-illustration" src="assets/hotel.png" alt="Hotel Tzanjuyú">
+        <p class="place-name">Hotel Tzanjuyú</p>
+        <p>Panajachel, Sololá</p>
+      </article>
+
+      <article class="detail-card timeline" id="itinerario">
+        <h3>Itinerario <span>✦</span></h3>
+        <ol>
+          <li><time>3:30 PM</time><span>Ceremonia</span></li>
+          <li><time>5:00 PM</time><span>Cóctel de bienvenida</span></li>
+          <li><time>6:00 PM</time><span>Cena</span></li>
+          <li><time>7:30 PM</time><span>Fiesta</span></li>
+          
+        </ol>
+      </article>
+
+      <article class="detail-card gifts">
+        <h3>Lista de regalos</h3>
+        <p>Su presencia es nuestro mejor regalo.</p>
+        <span class="heart" aria-hidden="true">♥</span>
+        <p>Si desean obsequiarnos algo, pueden hacerlo aquí:</p>
+        <a href="#" class="button">Ver lista</a>
+      </article>
+
+      <article class="detail-card facts">
+        <h3>Fun facts</h3>
+        <ul>
+          <li>Nos conocimos en la universidad pero reconectamos años después.</li>
+          <li>Nuestra primera cita todo salió mal pero eso la hizo mejor.</li>
+          <li>Vemos más series que películas.</li>
+          <li>Nuestra canción: <strong>Aries Gorillaz</strong></li>
+        </ul>
+      </article>
+    </section>
+
+    <section class="rsvp" id="asistencia">
+      <div class="flower-cluster" aria-hidden="true">
+        <span></span><span></span><span></span>
+      </div>
+      <div class="rsvp-copy">
+        <h2>Confirma tu asistencia</h2>
+        <p>Antes del 1 de octubre de 2026</p>
+        <button class="rsvp-button" type="button" data-open-rsvp>Confirmar asistencia</button>
+        <p class="contact">¿Dudas? &nbsp; +502 5365-8717 | +502 5710-5691 &nbsp; nuestraboda@gmail.com</p>
+      </div>
+      <div class="microphone" aria-hidden="true"></div>
+    </section>
+  </main>
+
+  <div class="modal" data-rsvp-modal aria-hidden="true">
+    <div class="modal-backdrop" data-close-rsvp></div>
+    <form class="rsvp-form" data-rsvp-form>
+      <button class="modal-close" type="button" data-close-rsvp aria-label="Cerrar formulario">×</button>
+      <h2>Confirma tu asistencia</h2>
+
+      <label>
+        Nombre del invitado
+        <input type="text" name="guestName" autocomplete="name" required>
+      </label>
+
+      <label>
+        Nombre del/la acompañante
+        <input type="text" name="companionName" autocomplete="name">
+      </label>
+
+      <label class="checkbox-field">
+        <input type="checkbox" name="hasChildren" data-children-checkbox>
+        Vienen niños
+      </label>
+
+      <label class="children-count" data-children-count>
+        ¿Cuántos niños?
+        <input type="number" name="childrenCount" min="1" step="1" value="1" disabled>
+      </label>
+
+      <button class="rsvp-button" type="submit">Enviar confirmación</button>
+      <p class="form-message" data-form-message role="status"></p>
+    </form>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>
