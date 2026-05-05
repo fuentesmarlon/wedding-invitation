@@ -4,6 +4,7 @@ const message = document.querySelector("[data-form-message]");
 const childrenCheckbox = document.querySelector("[data-children-checkbox]");
 const childrenCount = document.querySelector("[data-children-count]");
 const childrenInput = childrenCount.querySelector("input");
+const rsvpEndpoint = "https://script.google.com/macros/s/AKfycbym--ZvuLQZOUZVk8nFs8lTqSlDuvH7oqXCyrAGmYnOacv15lbeC-wKnn-d_iYOqtpO6A/exec";
 
 function openModal() {
   modal.classList.add("is-open");
@@ -50,20 +51,17 @@ form.addEventListener("submit", async (event) => {
   };
 
   try {
-    const response = await fetch("/api/rsvp", {
+    await fetch(rsvpEndpoint, {
       method: "POST",
-      headers: { "Content-Type": "application/json" },
+      mode: "no-cors",
+      headers: { "Content-Type": "text/plain;charset=utf-8" },
       body: JSON.stringify(payload),
     });
-
-    if (!response.ok) {
-      throw new Error("No se pudo guardar la confirmación.");
-    }
 
     message.textContent = "Confirmación guardada. ¡Gracias!";
     setTimeout(closeModal, 1400);
   } catch (error) {
-    message.textContent = "No se pudo enviar. Abre la página desde el servidor local.";
+    message.textContent = "No se pudo enviar. Intenta de nuevo en unos minutos.";
   }
 });
 

@@ -1,0 +1,8 @@
+.DS_Store
+node_modules/
+npm-debug.log*
+
+# Local CSV/backend version. GitHub Pages uses Google Sheets instead.
+invitaciones/
+server.js
+package.json
