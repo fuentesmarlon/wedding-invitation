@@ -4,7 +4,37 @@ const message = document.querySelector("[data-form-message]");
 const childrenCheckbox = document.querySelector("[data-children-checkbox]");
 const childrenCount = document.querySelector("[data-children-count]");
 const childrenInput = childrenCount.querySelector("input");
-const rsvpEndpoint = "https://script.google.com/macros/s/AKfycbym--ZvuLQZOUZVk8nFs8lTqSlDuvH7oqXCyrAGmYnOacv15lbeC-wKnn-d_iYOqtpO6A/exec";
+const rsvpEndpoint = "https://script.google.com/macros/s/AKfycbyiM9elDuW2ffQkcr6VwZ4Gg3H72NqmCbDMNSlyAj1SiVbmBnIIthgQ43Ph6oOnRLh8ig/exec";
+const submitFrameName = "rsvp-submit-frame";
+
+function submitToGoogleSheets(payload) {
+  const iframe = document.createElement("iframe");
+  iframe.name = submitFrameName;
+  iframe.hidden = true;
+  document.body.appendChild(iframe);
+
+  const submitForm = document.createElement("form");
+  submitForm.action = rsvpEndpoint;
+  submitForm.method = "POST";
+  submitForm.target = submitFrameName;
+  submitForm.hidden = true;
+
+  Object.entries(payload).forEach(([name, value]) => {
+    const input = document.createElement("input");
+    input.type = "hidden";
+    input.name = name;
+    input.value = value;
+    submitForm.appendChild(input);
+  });
+
+  document.body.appendChild(submitForm);
+  submitForm.submit();
+
+  setTimeout(() => {
+    submitForm.remove();
+    iframe.remove();
+  }, 3000);
+}
 
 function openModal() {
   modal.classList.add("is-open");
@@ -46,23 +76,13 @@ form.addEventListener("submit", async (event) => {
   const payload = {
     guestName: formData.get("guestName").trim(),
     companionName: formData.get("companionName").trim(),
-    hasChildren: childrenCheckbox.checked,
+    hasChildren: childrenCheckbox.checked ? "si" : "no",
     childrenCount: childrenCheckbox.checked ? Number(formData.get("childrenCount")) : 0,
   };
 
-  try {
-    await fetch(rsvpEndpoint, {
-      method: "POST",
-      mode: "no-cors",
-      headers: { "Content-Type": "text/plain;charset=utf-8" },
-      body: JSON.stringify(payload),
-    });
-
-    message.textContent = "Confirmación guardada. ¡Gracias!";
-    setTimeout(closeModal, 1400);
-  } catch (error) {
-    message.textContent = "No se pudo enviar. Intenta de nuevo en unos minutos.";
-  }
+  submitToGoogleSheets(payload);
+  message.textContent = "Confirmación enviada. ¡Gracias!";
+  setTimeout(closeModal, 1400);
 });
 
 document.addEventListener("keydown", (event) => {
