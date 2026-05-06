@@ -1,11 +1,34 @@
 const modal = document.querySelector("[data-rsvp-modal]");
 const form = document.querySelector("[data-rsvp-form]");
 const message = document.querySelector("[data-form-message]");
+const plusOneField = document.querySelector("[data-plus-one-field]");
+const childrenFields = document.querySelectorAll("[data-children-field]");
 const childrenCheckbox = document.querySelector("[data-children-checkbox]");
 const childrenCount = document.querySelector("[data-children-count]");
 const childrenInput = childrenCount.querySelector("input");
+const companionInput = plusOneField.querySelector("input");
 const rsvpEndpoint = "https://script.google.com/macros/s/AKfycbyiM9elDuW2ffQkcr6VwZ4Gg3H72NqmCbDMNSlyAj1SiVbmBnIIthgQ43Ph6oOnRLh8ig/exec";
 const submitFrameName = "rsvp-submit-frame";
+const queryParams = new URLSearchParams(window.location.search);
+const allowsPlusOne = queryParams.get("plsne")?.toLowerCase() === "true";
+
+function setPlusOneVisibility() {
+  plusOneField.hidden = !allowsPlusOne;
+  childrenFields.forEach((field) => {
+    field.hidden = !allowsPlusOne;
+  });
+  companionInput.disabled = !allowsPlusOne;
+  childrenCheckbox.disabled = !allowsPlusOne;
+
+  if (!allowsPlusOne) {
+    companionInput.value = "";
+    childrenCheckbox.checked = false;
+    childrenCount.classList.remove("is-visible");
+    childrenInput.value = "";
+    childrenInput.disabled = true;
+    childrenInput.required = false;
+  }
+}
 
 function submitToGoogleSheets(payload) {
   const iframe = document.createElement("iframe");
@@ -37,6 +60,7 @@ function submitToGoogleSheets(payload) {
 }
 
 function openModal() {
+  setPlusOneVisibility();
   modal.classList.add("is-open");
   modal.setAttribute("aria-hidden", "false");
   form.elements.guestName.focus();
@@ -49,6 +73,7 @@ function closeModal() {
   message.textContent = "";
   childrenCount.classList.remove("is-visible");
   childrenInput.disabled = true;
+  setPlusOneVisibility();
 }
 
 document.querySelector("[data-open-rsvp]").addEventListener("click", openModal);
@@ -75,9 +100,9 @@ form.addEventListener("submit", async (event) => {
   const formData = new FormData(form);
   const payload = {
     guestName: formData.get("guestName").trim(),
-    companionName: formData.get("companionName").trim(),
-    hasChildren: childrenCheckbox.checked ? "si" : "no",
-    childrenCount: childrenCheckbox.checked ? Number(formData.get("childrenCount")) : 0,
+    companionName: allowsPlusOne ? formData.get("companionName").trim() : "",
+    hasChildren: allowsPlusOne ? (childrenCheckbox.checked ? "si" : "no") : "",
+    childrenCount: allowsPlusOne && childrenCheckbox.checked ? Number(formData.get("childrenCount")) : "",
   };
 
   submitToGoogleSheets(payload);
@@ -90,3 +115,5 @@ document.addEventListener("keydown", (event) => {
     closeModal();
   }
 });
+
+setPlusOneVisibility();

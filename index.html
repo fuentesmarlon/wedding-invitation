@@ -24,46 +24,36 @@
 
     <section class="details" id="historia">
       <article class="detail-card place">
-        <h3>Lugar <span>✦</span></h3>
-        <img class="hotel-illustration" src="assets/hotel.png" alt="Hotel Tzanjuyú">
-        <p class="place-name">Hotel Tzanjuyú</p>
-        <p>Panajachel, Sololá</p>
+        <a class="detail-image-link" href="https://waze.com/ul/h9fx5vec5w" target="_blank" rel="noopener" aria-label="Abrir ubicación en Waze">
+          <img class="detail-image" src="assets/location.png" alt="Lugar: Hotel Tzanjuyú, Panajachel, Sololá">
+        </a>
+        <span class="mobile-map-hint">Toca para abrir ubicación en Waze</span>
       </article>
 
       <article class="detail-card timeline" id="itinerario">
-        <img class="timeline-image" src="assets/timeline.png" alt="Timeline: 3:30 PM ceremonia, 5:00 PM cóctel de bienvenida, 6:00 PM cena, 7:30 PM fiesta">
+        <img class="detail-image" src="assets/timeline.png" alt="Timeline: 3:30 PM ceremonia, 5:00 PM cóctel de bienvenida, 6:00 PM cena, 7:30 PM fiesta">
       </article>
 
       <article class="detail-card gifts">
-        <h3>Lista de regalos</h3>
-        <p>Su presencia es nuestro mejor regalo.</p>
-        <span class="heart" aria-hidden="true">♥</span>
-        <p>Si desean obsequiarnos algo, pueden hacerlo aquí:</p>
+        <img class="gifts-image" src="assets/regalos.png" alt="Lista de regalos. Su presencia es nuestro mejor regalo. Si desean obsequiarnos algo, pueden hacerlo aquí:">
         <a href="#" class="button">Ver lista</a>
       </article>
 
       <article class="detail-card facts">
-        <h3>Fun facts</h3>
-        <ul>
-          <li>Nos conocimos en la universidad pero reconectamos años después.</li>
-          <li>Nuestra primera cita todo salió mal pero eso la hizo mejor.</li>
-          <li>Vemos más series que películas.</li>
-          <li>Nuestra canción: <strong>Aries Gorillaz</strong></li>
-        </ul>
+        <img class="facts-image" src="assets/fun-facts.png" alt="Fun facts de Isa y Marlon">
+        <iframe class="spotify-embed" data-testid="embed-iframe" src="https://open.spotify.com/embed/track/25Gp0MpGdvrs4hL1u4L2TF?utm_source=generator" width="100%" height="152" frameborder="0" allowfullscreen allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy" title="Canción de Spotify"></iframe>
       </article>
     </section>
 
     <section class="rsvp" id="asistencia">
-      <div class="flower-cluster" aria-hidden="true">
-        <span></span><span></span><span></span>
-      </div>
+      <img class="ticket ticket-left" src="assets/ticket1.png" alt="" aria-hidden="true">
       <div class="rsvp-copy">
         <h2>Confirma tu asistencia</h2>
         <p>Antes del 1 de octubre de 2026</p>
         <button class="rsvp-button" type="button" data-open-rsvp>Confirmar asistencia</button>
         <p class="contact">¿Dudas? &nbsp; +502 5365-8717 | +502 5710-5691</p>
       </div>
-      <div class="microphone" aria-hidden="true"></div>
+      <img class="ticket ticket-right" src="assets/ticket2.png" alt="" aria-hidden="true">
     </section>
   </main>
 
@@ -78,17 +68,17 @@
         <input type="text" name="guestName" autocomplete="name" required>
       </label>
 
-      <label>
+      <label data-plus-one-field>
         Nombre del/la acompañante
         <input type="text" name="companionName" autocomplete="name">
       </label>
 
-      <label class="checkbox-field">
+      <label class="checkbox-field" data-children-field>
         <input type="checkbox" name="hasChildren" data-children-checkbox>
         Vienen niños
       </label>
 
-      <label class="children-count" data-children-count>
+      <label class="children-count" data-children-count data-children-field>
         ¿Cuántos niños?
         <input type="number" name="childrenCount" min="1" step="1" value="1" disabled>
       </label>
