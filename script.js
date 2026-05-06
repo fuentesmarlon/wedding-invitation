@@ -12,6 +12,10 @@ const submitFrameName = "rsvp-submit-frame";
 const queryParams = new URLSearchParams(window.location.search);
 const allowsPlusOne = queryParams.get("plsne")?.toLowerCase() === "true";
 
+function getCleanValue(input) {
+  return input.value.trim();
+}
+
 function setPlusOneVisibility() {
   plusOneField.hidden = !allowsPlusOne;
   childrenFields.forEach((field) => {
@@ -26,7 +30,6 @@ function setPlusOneVisibility() {
     childrenCount.classList.remove("is-visible");
     childrenInput.value = "";
     childrenInput.disabled = true;
-    childrenInput.required = false;
   }
 }
 
@@ -86,10 +89,9 @@ childrenCheckbox.addEventListener("change", () => {
   const isChecked = childrenCheckbox.checked;
   childrenCount.classList.toggle("is-visible", isChecked);
   childrenInput.disabled = !isChecked;
-  childrenInput.required = isChecked;
 
   if (!isChecked) {
-    childrenInput.value = "1";
+    childrenInput.value = "";
   }
 });
 
@@ -97,12 +99,11 @@ form.addEventListener("submit", async (event) => {
   event.preventDefault();
   message.textContent = "Enviando confirmación...";
 
-  const formData = new FormData(form);
   const payload = {
-    guestName: formData.get("guestName").trim(),
-    companionName: allowsPlusOne ? formData.get("companionName").trim() : "",
-    hasChildren: allowsPlusOne ? (childrenCheckbox.checked ? "si" : "no") : "",
-    childrenCount: allowsPlusOne && childrenCheckbox.checked ? Number(formData.get("childrenCount")) : "",
+    guestName: getCleanValue(form.elements.guestName),
+    companionName: allowsPlusOne ? getCleanValue(companionInput) : "",
+    hasChildren: allowsPlusOne && childrenCheckbox.checked ? "si" : "",
+    childrenCount: allowsPlusOne && childrenCheckbox.checked && childrenInput.value ? Number(childrenInput.value) : "",
   };
 
   submitToGoogleSheets(payload);
