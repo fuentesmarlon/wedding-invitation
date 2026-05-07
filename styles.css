@@ -32,7 +32,7 @@ a {
 .poster-shell {
   width: min(100%, 1020px);
   margin: 0 auto;
-  background: var(--paper);
+  background: #F2E8D5;
   border: 8px solid #f7ead1;
   box-shadow: 0 18px 70px rgba(0, 0, 0, .35);
 }
@@ -55,8 +55,11 @@ a {
   pointer-events: none;
   content: "";
   background:
-    radial-gradient(circle at 30% 25%, rgba(255, 255, 255, .12), transparent 22%),
-    repeating-linear-gradient(0deg, rgba(68, 42, 23, .055) 0 1px, transparent 1px 4px);
+    radial-gradient(circle at 18% 22%, rgba(61, 42, 35, .08) 0 1px, transparent 1.8px),
+    radial-gradient(circle at 72% 38%, rgba(255, 255, 255, .18) 0 1px, transparent 1.7px),
+    radial-gradient(circle at 42% 78%, rgba(61, 42, 35, .06) 0 1.2px, transparent 2px),
+    radial-gradient(circle at 86% 84%, rgba(255, 255, 255, .12) 0 1px, transparent 1.8px);
+  background-size: 9px 11px, 13px 15px, 17px 19px, 21px 23px;
   mix-blend-mode: multiply;
 }
 
@@ -173,7 +176,7 @@ a {
   grid-template-columns: repeat(2, minmax(0, 1fr));
   gap: 0;
   padding: 54px 48px 42px;
-  background: #EAD9C5;
+  background: #F2E8D5;
 }
 
 .detail-card {

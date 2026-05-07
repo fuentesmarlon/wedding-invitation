@@ -8,12 +8,16 @@ const childrenCount = document.querySelector("[data-children-count]");
 const childrenInput = childrenCount.querySelector("input");
 const companionInput = plusOneField.querySelector("input");
 const rsvpEndpoint = "https://script.google.com/macros/s/AKfycbyiM9elDuW2ffQkcr6VwZ4Gg3H72NqmCbDMNSlyAj1SiVbmBnIIthgQ43Ph6oOnRLh8ig/exec";
-const submitFrameName = "rsvp-submit-frame";
 const queryParams = new URLSearchParams(window.location.search);
 const allowsPlusOne = queryParams.get("plsne")?.toLowerCase() === "true";
 
 function getCleanValue(input) {
   return input.value.trim();
+}
+
+function getSheetSafeValue(value) {
+  const cleanValue = String(value).trim();
+  return cleanValue || " ";
 }
 
 function setPlusOneVisibility() {
@@ -34,32 +38,11 @@ function setPlusOneVisibility() {
 }
 
 function submitToGoogleSheets(payload) {
-  const iframe = document.createElement("iframe");
-  iframe.name = submitFrameName;
-  iframe.hidden = true;
-  document.body.appendChild(iframe);
-
-  const submitForm = document.createElement("form");
-  submitForm.action = rsvpEndpoint;
-  submitForm.method = "POST";
-  submitForm.target = submitFrameName;
-  submitForm.hidden = true;
-
-  Object.entries(payload).forEach(([name, value]) => {
-    const input = document.createElement("input");
-    input.type = "hidden";
-    input.name = name;
-    input.value = value;
-    submitForm.appendChild(input);
+  return fetch(rsvpEndpoint, {
+    method: "POST",
+    mode: "no-cors",
+    body: new URLSearchParams(payload),
   });
-
-  document.body.appendChild(submitForm);
-  submitForm.submit();
-
-  setTimeout(() => {
-    submitForm.remove();
-    iframe.remove();
-  }, 3000);
 }
 
 function openModal() {
@@ -101,14 +84,18 @@ form.addEventListener("submit", async (event) => {
 
   const payload = {
     guestName: getCleanValue(form.elements.guestName),
-    companionName: allowsPlusOne ? getCleanValue(companionInput) : "",
-    hasChildren: allowsPlusOne && childrenCheckbox.checked ? "si" : "",
-    childrenCount: allowsPlusOne && childrenCheckbox.checked && childrenInput.value ? Number(childrenInput.value) : "",
+    companionName: allowsPlusOne ? getSheetSafeValue(companionInput.value) : " ",
+    hasChildren: allowsPlusOne ? (childrenCheckbox.checked ? "si" : "no") : " ",
+    childrenCount: allowsPlusOne && childrenCheckbox.checked ? getSheetSafeValue(childrenInput.value) : " ",
   };
 
-  submitToGoogleSheets(payload);
-  message.textContent = "Confirmación enviada. ¡Gracias!";
-  setTimeout(closeModal, 1400);
+  try {
+    await submitToGoogleSheets(payload);
+    message.textContent = "Confirmación enviada. ¡Gracias!";
+    setTimeout(closeModal, 1400);
+  } catch (error) {
+    message.textContent = "No se pudo enviar. Intenta de nuevo.";
+  }
 });
 
 document.addEventListener("keydown", (event) => {
