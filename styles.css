@@ -71,7 +71,6 @@ a {
   padding: 0 20px;
   border: 1px solid rgba(247, 217, 143, .85);
   background: rgba(227, 107, 101, .86);
-  text-shadow: 2px 2px 0 rgba(0, 0, 0, .55);
 }
 
 .nav-star {
@@ -272,7 +271,7 @@ a {
 .rsvp {
   position: relative;
   display: grid;
-  grid-template-columns: minmax(120px, .75fr) minmax(0, 1.45fr) minmax(120px, .75fr);
+  grid-template-columns: 1fr;
   gap: 28px;
   align-items: center;
   justify-items: center;
@@ -294,7 +293,7 @@ a {
 .ticket {
   position: relative;
   z-index: 1;
-  display: block;
+  display: none;
   width: min(100%, 210px);
   height: auto;
   object-fit: contain;
@@ -327,7 +326,8 @@ a {
   color: #e36b65;
   background: #ffe9bf;
   border-color: #e36b65;
-  box-shadow: 3px 4px 0 rgba(75, 42, 33, .35);
+  box-shadow: none;
+  text-shadow: none;
 }
 
 .contact {
@@ -407,6 +407,11 @@ a {
 .modal.is-open .image-modal-panel {
   opacity: 1;
   transform: translateY(0) scale(1);
+}
+
+.image-modal-link {
+  display: block;
+  width: 100%;
 }
 
 .dress-code-image,
