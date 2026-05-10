@@ -26,7 +26,6 @@
         <a class="detail-image-link" href="https://waze.com/ul/h9fx5vec5w" target="_blank" rel="noopener" aria-label="Abrir ubicación en Waze">
           <img class="detail-image" src="assets/location.png" alt="Lugar: Hotel Tzanjuyú, Panajachel, Sololá">
         </a>
-        <span class="mobile-map-hint">Toca para abrir ubicación en Waze</span>
       </article>
 
       <article class="detail-card timeline" id="itinerario">
@@ -40,7 +39,7 @@
 
       <article class="detail-card gifts">
         <img class="gifts-image" src="assets/regalos.png" alt="Lista de regalos. Su presencia es nuestro mejor regalo. Si desean obsequiarnos algo, pueden hacerlo aquí:">
-        <a href="#" class="button">Ver lista</a>
+        <button class="button" type="button" data-open-gifts>Ver lista</button>
       </article>
     </section>
 
@@ -85,6 +84,24 @@
       <button class="rsvp-button" type="submit">Enviar confirmación</button>
       <p class="form-message" data-form-message role="status"></p>
     </form>
+  </div>
+
+  <div class="modal dress-code-modal" data-dress-code-modal aria-hidden="true">
+    <div class="modal-backdrop" data-close-dress-code></div>
+    <div class="dress-code-panel" role="dialog" aria-modal="true" aria-label="Código de vestimenta">
+      <button class="modal-close" type="button" data-close-dress-code aria-label="Cerrar código de vestimenta">×</button>
+      <img class="dress-code-image" src="assets/women.png" alt="Código de vestimenta para mujeres">
+      <img class="dress-code-image" src="assets/hombres.png" alt="Código de vestimenta para hombres">
+    </div>
+  </div>
+
+  <div class="modal gifts-modal" data-gifts-modal aria-hidden="true">
+    <div class="modal-backdrop" data-close-gifts></div>
+    <div class="image-modal-panel" role="dialog" aria-modal="true" aria-label="Lista de regalos">
+      <button class="modal-close" type="button" data-close-gifts aria-label="Cerrar lista de regalos">×</button>
+      <img class="image-modal-image" src="assets/bodasmax.png" alt="Lista de regalos en Bodas Max">
+      <img class="image-modal-image" src="assets/bodassiman.png" alt="Lista de regalos en Bodas Siman">
+    </div>
   </div>
 
   <script src="script.js"></script>
