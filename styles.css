@@ -157,7 +157,7 @@ a {
 .details {
   position: relative;
   display: grid;
-  grid-template-columns: repeat(2, minmax(0, 1fr));
+  grid-template-columns: 1fr;
   gap: 0;
   padding: 54px 48px 42px;
   background: #F2E8D5;
@@ -168,15 +168,12 @@ a {
   z-index: 1;
   min-height: 520px;
   padding: 38px 46px;
+  border-bottom: 1px solid rgba(149, 72, 45, .65);
   text-align: center;
 }
 
-.detail-card:nth-child(odd) {
-  border-right: 1px solid rgba(149, 72, 45, .65);
-}
-
-.detail-card:nth-child(-n + 2) {
-  border-bottom: 1px solid rgba(149, 72, 45, .65);
+.detail-card:last-child {
+  border-bottom: 0;
 }
 
 .detail-card h3 {
@@ -193,6 +190,15 @@ a {
   display: grid;
   align-content: center;
   padding-inline: 24px;
+}
+
+.timeline {
+  justify-items: center;
+  gap: 28px;
+}
+
+.timeline-mobile {
+  display: none;
 }
 
 .detail-image {
@@ -234,22 +240,6 @@ a {
   width: min(100%, 430px);
   height: auto;
   max-height: 430px;
-  object-fit: contain;
-  margin: 0 auto;
-}
-
-.facts {
-  display: grid;
-  align-content: center;
-  justify-items: center;
-  gap: 28px;
-}
-
-.facts-image {
-  display: block;
-  width: min(100%, 520px);
-  height: auto;
-  max-height: 620px;
   object-fit: contain;
   margin: 0 auto;
 }
@@ -531,15 +521,6 @@ a {
   .detail-card {
     min-height: auto;
     padding: 34px 0;
-    border-right: 0;
-    border-bottom: 1px solid rgba(149, 72, 45, .65);
-  }
-
-  .detail-card:nth-child(odd) {
-    border-right: 0;
-  }
-
-  .detail-card:nth-child(-n + 2) {
     border-bottom: 1px solid rgba(149, 72, 45, .65);
   }
 
@@ -566,6 +547,17 @@ a {
     padding-inline: 0;
   }
 
+  .timeline-desktop {
+    display: none;
+  }
+
+  .timeline-mobile {
+    display: grid;
+    justify-items: center;
+    gap: 18px;
+    width: 100%;
+  }
+
   .mobile-map-hint {
     display: block;
     margin-top: 10px;
@@ -583,11 +575,6 @@ a {
   .gifts-image {
     width: min(100%, 360px);
     max-height: 380px;
-  }
-
-  .facts-image {
-    width: min(100%, 430px);
-    max-height: 620px;
   }
 
   .spotify-embed {
