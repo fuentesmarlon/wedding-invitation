@@ -4,8 +4,8 @@
   --cream: #f5dcb4;
   --paper: #f2d5a7;
   --ochre: #d79328;
-  --coral: #d55057;
-  --rose: #b83845;
+  --coral: #e36b65;
+  --rose: #e36b65;
   --ink: #3d2a23;
 }
 
@@ -47,22 +47,6 @@ a {
     url("assets/hero-vintage-lake.png") center / cover;
 }
 
-.hero::after,
-.details::after,
-.rsvp::after {
-  position: absolute;
-  inset: 0;
-  pointer-events: none;
-  content: "";
-  background:
-    radial-gradient(circle at 18% 22%, rgba(61, 42, 35, .08) 0 1px, transparent 1.8px),
-    radial-gradient(circle at 72% 38%, rgba(255, 255, 255, .18) 0 1px, transparent 1.7px),
-    radial-gradient(circle at 42% 78%, rgba(61, 42, 35, .06) 0 1.2px, transparent 2px),
-    radial-gradient(circle at 86% 84%, rgba(255, 255, 255, .12) 0 1px, transparent 1.8px);
-  background-size: 9px 11px, 13px 15px, 17px 19px, 21px 23px;
-  mix-blend-mode: multiply;
-}
-
 .nav {
   position: relative;
   z-index: 2;
@@ -85,7 +69,7 @@ a {
   min-height: 42px;
   padding: 0 20px;
   border: 1px solid rgba(247, 217, 143, .85);
-  background: rgba(177, 55, 61, .86);
+  background: rgba(227, 107, 101, .86);
   box-shadow: 4px 5px 0 rgba(0, 0, 0, .72);
   text-shadow: 2px 2px 0 rgba(0, 0, 0, .55);
 }
@@ -305,8 +289,8 @@ a {
   padding: 42px 44px;
   color: #f7ddb5;
   background:
-    linear-gradient(90deg, rgba(154, 45, 55, .85), rgba(190, 66, 73, .92)),
-    #b93f49;
+    linear-gradient(90deg, rgba(227, 107, 101, .88), rgba(227, 107, 101, .96)),
+    #e36b65;
 }
 
 .rsvp-copy {
@@ -348,8 +332,8 @@ a {
 
 .rsvp-button {
   cursor: pointer;
-  color: #54311e;
-  background: #e9a83b;
+  color: #ffe9bf;
+  background: #e36b65;
   border-color: #f7e5ba;
   box-shadow: 3px 4px 0 rgba(75, 42, 33, .35);
 }
