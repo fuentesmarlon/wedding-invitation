@@ -145,7 +145,7 @@ form.addEventListener("submit", async (event) => {
     message.textContent = "Confirmación enviada. ¡Gracias!";
     setTimeout(closeModal, 1400);
   } catch (error) {
-    message.textContent = "No se pudo enviar. Intenta de nuevo.";
+    message.textContent = "Error: no se pudo mandar tu confirmación";
   }
 });
 
