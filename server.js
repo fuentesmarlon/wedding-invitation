@@ -89,7 +89,11 @@ async function saveRsvp(request, response) {
 function serveStatic(request, response) {
   const requestedPath = decodeURIComponent(new URL(request.url, `http://${request.headers.host}`).pathname);
   const normalizedPath = requestedPath === "/" ? "/index.html" : requestedPath;
-  const filePath = path.normalize(path.join(publicDir, normalizedPath));
+  let filePath = path.normalize(path.join(publicDir, normalizedPath));
+
+  if (!path.extname(filePath)) {
+    filePath = path.join(filePath, "index.html");
+  }
 
   if (!filePath.startsWith(publicDir) || filePath.includes(`${path.sep}invitaciones${path.sep}`)) {
     response.writeHead(404);
