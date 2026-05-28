@@ -6,6 +6,8 @@
   --gold: #b58a4a;
   --rose: #ae5c52;
   --cream: #fff5df;
+  --display-font: "Bebas Neue", Impact, sans-serif;
+  --body-font: "Montserrat", Arial, sans-serif;
 }
 
 * {
@@ -20,7 +22,9 @@ body {
   margin: 0;
   color: var(--ink);
   background: #EED6CB;
-  font-family: "Libre Baskerville", Georgia, serif;
+  font-family: var(--body-font);
+  font-weight: 400;
+  letter-spacing: 0;
 }
 
 body::before {
@@ -55,9 +59,9 @@ input {
   justify-content: center;
   gap: 12px;
   width: 100%;
-  font-family: "Cinzel", serif;
+  font-family: var(--display-font);
   font-size: clamp(.72rem, 1.45vw, .9rem);
-  font-weight: 800;
+  font-weight: 400;
   text-transform: uppercase;
 }
 
@@ -108,7 +112,7 @@ input {
 .itinerary h2,
 .info-grid h2,
 .rsvp h2 {
-  font-family: "Cinzel", serif;
+  font-family: var(--display-font);
   font-weight: 800;
   text-transform: uppercase;
 }
@@ -123,7 +127,6 @@ input {
 .hero-title h1 {
   margin: 0;
   color: var(--green);
-  font-family: "Cinzel", serif;
   font-size: clamp(4rem, 12vw, 8.6rem);
   line-height: .84;
   text-transform: uppercase;
@@ -163,7 +166,7 @@ input {
 
 .invitation {
   font-style: italic;
-  font-weight: 700;
+  font-weight: 400;
 }
 
 .story {
@@ -236,14 +239,14 @@ input {
 
 .timeline-list time {
   color: var(--rose);
-  font-family: "Cinzel", serif;
+  font-family: var(--display-font);
   font-size: 1.2rem;
-  font-weight: 800;
+  font-weight: 400;
 }
 
 .timeline-list h3 {
   margin: 4px 0 6px;
-  font-family: "Cinzel", serif;
+  font-family: var(--display-font);
   font-size: 1.35rem;
   text-transform: uppercase;
 }
@@ -293,7 +296,7 @@ input {
   color: var(--cream);
   background: var(--green);
   border: 0;
-  font-family: "Cinzel", serif;
+  font-family: var(--display-font);
   font-weight: 800;
   text-transform: uppercase;
   cursor: pointer;
@@ -387,7 +390,7 @@ input {
 
 .rsvp-form h2 {
   margin: 0;
-  font-family: "Cinzel", serif;
+  font-family: var(--display-font);
   text-align: center;
   text-transform: uppercase;
 }
