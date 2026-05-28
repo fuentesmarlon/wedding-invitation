@@ -19,7 +19,7 @@ html {
 body {
   margin: 0;
   color: var(--ink);
-  background: #EED6CB;
+  background: var(--green);
   font-family: "Libre Baskerville", Georgia, serif;
 }
 
@@ -56,7 +56,7 @@ input {
   gap: 12px;
   width: 100%;
   font-family: "Cinzel", serif;
-  font-size: clamp(.72rem, 1.45vw, .9rem);
+  font-size: clamp(.92rem, 2vw, 1.15rem);
   font-weight: 800;
   text-transform: uppercase;
 }
@@ -65,11 +65,12 @@ input {
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  min-height: 42px;
-  padding: 0 18px;
+  min-height: 48px;
+  padding: 0 24px;
   color: var(--cream);
   background: var(--green);
   border: 1px solid rgba(255, 245, 223, .7);
+  line-height: 1;
 }
 
 .civil-nav a:hover,
@@ -186,7 +187,7 @@ input {
 
 .itinerary h2 {
   width: fit-content;
-  margin: -1px auto 34px;
+  margin: 28px auto 34px;
   padding: 14px 62px;
   color: var(--cream);
   background: var(--green);
@@ -530,11 +531,12 @@ input {
 
 @media (max-width: 520px) {
   .civil-nav {
-    font-size: .7rem;
+    font-size: 1rem;
   }
 
   .civil-nav a {
     width: min(100%, 280px);
+    min-height: 46px;
   }
 
   .civil-hero {
