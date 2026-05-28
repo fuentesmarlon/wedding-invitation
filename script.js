@@ -9,9 +9,9 @@ const childrenCheckbox = document.querySelector("[data-children-checkbox]");
 const childrenCount = document.querySelector("[data-children-count]");
 const childrenInput = childrenCount.querySelector("input");
 const companionInput = plusOneField.querySelector("input");
-const rsvpEndpoint = "https://script.google.com/macros/s/AKfycbyiM9elDuW2ffQkcr6VwZ4Gg3H72NqmCbDMNSlyAj1SiVbmBnIIthgQ43Ph6oOnRLh8ig/exec";
+const rsvpEndpoint = "https://script.google.com/macros/s/AKfycbxWto4pLmCZ7-obu_pbrtI5As19Ikhdai8QX5NOHjSKl7dyh9ieby1Ygg8MQKSmJfjGHg/exec";
 const queryParams = new URLSearchParams(window.location.search);
-const allowsPlusOne = queryParams.get("plsne")?.toLowerCase() === "true";
+const allowsPlusOne = form.dataset.allowPlusOne === "true" || queryParams.get("plsne")?.toLowerCase() === "true";
 
 function getCleanValue(input) {
   return input.value.trim();
@@ -60,21 +60,37 @@ function openModal() {
 }
 
 function openDressCodeModal() {
+  if (!dressCodeModal) {
+    return;
+  }
+
   dressCodeModal.classList.add("is-open");
   dressCodeModal.setAttribute("aria-hidden", "false");
 }
 
 function closeDressCodeModal() {
+  if (!dressCodeModal) {
+    return;
+  }
+
   dressCodeModal.classList.remove("is-open");
   dressCodeModal.setAttribute("aria-hidden", "true");
 }
 
 function openGiftsModal() {
+  if (!giftsModal) {
+    return;
+  }
+
   giftsModal.classList.add("is-open");
   giftsModal.setAttribute("aria-hidden", "false");
 }
 
 function closeGiftsModal() {
+  if (!giftsModal) {
+    return;
+  }
+
   giftsModal.classList.remove("is-open");
   giftsModal.setAttribute("aria-hidden", "true");
 }
@@ -104,8 +120,8 @@ function closeModal({ showDressCode = true } = {}) {
   }
 }
 
-document.querySelector("[data-open-rsvp]").addEventListener("click", openModal);
-document.querySelector("[data-open-gifts]").addEventListener("click", openGiftsModal);
+document.querySelector("[data-open-rsvp]")?.addEventListener("click", openModal);
+document.querySelector("[data-open-gifts]")?.addEventListener("click", openGiftsModal);
 
 document.querySelectorAll("[data-close-rsvp]").forEach((button) => {
   button.addEventListener("click", closeModal);
@@ -140,6 +156,10 @@ form.addEventListener("submit", async (event) => {
     childrenCount: allowsPlusOne && childrenCheckbox.checked ? getSheetSafeValue(childrenInput.value) : " ",
   };
 
+  if (form.elements.sheetName) {
+    payload.sheetName = getCleanValue(form.elements.sheetName);
+  }
+
   try {
     await submitToGoogleSheets(payload);
     message.textContent = "Confirmación enviada. ¡Gracias!";
@@ -155,12 +175,12 @@ document.addEventListener("keydown", (event) => {
     return;
   }
 
-  if (event.key === "Escape" && dressCodeModal.classList.contains("is-open")) {
+  if (event.key === "Escape" && dressCodeModal?.classList.contains("is-open")) {
     closeDressCodeModal();
     return;
   }
 
-  if (event.key === "Escape" && giftsModal.classList.contains("is-open")) {
+  if (event.key === "Escape" && giftsModal?.classList.contains("is-open")) {
     closeGiftsModal();
   }
 });

@@ -19,18 +19,12 @@ html {
 body {
   margin: 0;
   color: var(--ink);
-  background: #283525;
+  background: #EED6CB;
   font-family: "Libre Baskerville", Georgia, serif;
 }
 
 body::before {
-  position: fixed;
-  inset: 0;
-  z-index: -1;
-  content: "";
-  background:
-    radial-gradient(circle at 20% 20%, rgba(255, 255, 255, .16), transparent 30%),
-    linear-gradient(135deg, #22301f, #53613f);
+  content: none;
 }
 
 a {
@@ -54,57 +48,33 @@ input {
   box-shadow: 0 24px 80px rgba(0, 0, 0, .35);
 }
 
-.topbar {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 22px;
-  min-height: 78px;
-  padding: 12px 28px;
-}
-
 .civil-nav {
   display: flex;
+  flex-wrap: wrap;
   align-items: center;
   justify-content: center;
-  gap: clamp(16px, 3.6vw, 46px);
+  gap: 12px;
   width: 100%;
   font-family: "Cinzel", serif;
-  font-size: clamp(.72rem, 1.5vw, .95rem);
+  font-size: clamp(.72rem, 1.45vw, .9rem);
   font-weight: 800;
   text-transform: uppercase;
 }
 
 .civil-nav a {
-  padding: 10px 0;
-  border-bottom: 1px solid transparent;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 42px;
+  padding: 0 18px;
+  color: var(--cream);
+  background: var(--green);
+  border: 1px solid rgba(255, 245, 223, .7);
 }
 
 .civil-nav a:hover,
 .civil-nav a:focus-visible {
-  color: var(--rose);
-  border-color: var(--rose);
-}
-
-.nav-sprig {
-  width: 54px;
-  height: 34px;
-  object-fit: contain;
-}
-
-.menu-button {
-  display: grid;
-  gap: 6px;
-  width: 48px;
-  padding: 8px;
-  border: 0;
-  background: transparent;
-}
-
-.menu-button span {
-  display: block;
-  height: 3px;
-  background: var(--green);
+  background: var(--rose);
 }
 
 .civil-hero {
@@ -112,14 +82,24 @@ input {
   display: grid;
   place-items: center;
   min-height: 680px;
-  padding: 54px 32px 70px;
+  padding: 34px 24px 70px;
   text-align: center;
 }
 
 .hero-title {
   position: relative;
   z-index: 2;
-  width: min(100%, 560px);
+  display: grid;
+  gap: 28px;
+  justify-items: center;
+  width: min(100%, 640px);
+}
+
+.homepage-title {
+  display: block;
+  width: min(100%, 540px);
+  height: auto;
+  object-fit: contain;
 }
 
 .eyebrow,
@@ -127,8 +107,7 @@ input {
 .names,
 .itinerary h2,
 .info-grid h2,
-.rsvp h2,
-.fun-facts h2 {
+.rsvp h2 {
   font-family: "Cinzel", serif;
   font-weight: 800;
   text-transform: uppercase;
@@ -187,31 +166,6 @@ input {
   font-weight: 700;
 }
 
-.hero-flower,
-.hero-building {
-  position: absolute;
-  pointer-events: none;
-  user-select: none;
-}
-
-.hero-flower-left {
-  top: 22px;
-  left: 0;
-  width: min(32vw, 280px);
-}
-
-.hero-flower-right {
-  right: 0;
-  bottom: 8px;
-  width: min(30vw, 260px);
-}
-
-.hero-building {
-  right: 22px;
-  bottom: 62px;
-  width: min(38vw, 370px);
-}
-
 .story {
   padding: 28px 34px;
   border-top: 1px solid rgba(63, 76, 49, .32);
@@ -242,22 +196,8 @@ input {
 
 .timeline {
   display: grid;
-  grid-template-columns: minmax(170px, 270px) minmax(260px, 430px);
+  grid-template-columns: minmax(260px, 480px);
   justify-content: center;
-  gap: 42px;
-}
-
-.timeline-art {
-  display: grid;
-  gap: 26px;
-  justify-items: center;
-  padding-top: 6px;
-}
-
-.timeline-art img {
-  width: min(100%, 150px);
-  min-height: 105px;
-  object-fit: contain;
 }
 
 .timeline-list {
@@ -335,32 +275,11 @@ input {
   letter-spacing: .08em;
 }
 
-.dress-icons {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 28px;
-  color: var(--rose);
-  font-size: 2rem;
-}
-
-.dress-icons img {
-  width: min(31%, 96px);
-  height: 120px;
-  object-fit: contain;
-}
-
 .dress-code p,
 .gifts p {
   margin: 18px auto 0;
   max-width: 280px;
   line-height: 1.55;
-}
-
-.gift-box {
-  width: 88px;
-  height: 88px;
-  object-fit: contain;
 }
 
 .button,
@@ -428,99 +347,6 @@ input {
   margin-top: 28px;
 }
 
-.rsvp-flower,
-.rsvp-mic {
-  position: absolute;
-  pointer-events: none;
-}
-
-.rsvp-flower {
-  left: 0;
-  bottom: 0;
-  width: min(30vw, 260px);
-}
-
-.rsvp-mic {
-  right: 36px;
-  bottom: 0;
-  width: min(20vw, 170px);
-}
-
-.fun-facts {
-  position: relative;
-  display: grid;
-  grid-template-columns: 220px 1fr;
-  gap: 28px;
-  align-items: center;
-  min-height: 210px;
-  padding: 34px 48px;
-  color: #e8c486;
-  background: var(--green);
-  border: 16px solid #ead8bb;
-  outline: 1px solid rgba(232, 196, 134, .75);
-  outline-offset: -28px;
-}
-
-.record-player {
-  width: min(100%, 180px);
-  object-fit: contain;
-}
-
-.song-card {
-  text-align: center;
-}
-
-.fun-facts h2 {
-  margin: 0 0 10px;
-  font-size: 1.6rem;
-  letter-spacing: .08em;
-}
-
-.fun-facts p {
-  margin: 0 0 22px;
-  font-family: "Parisienne", cursive;
-  font-size: 1.65rem;
-}
-
-.audio-row {
-  display: grid;
-  grid-template-columns: 48px 1fr 48px;
-  gap: 18px;
-  align-items: center;
-}
-
-.play {
-  display: grid;
-  place-items: center;
-  width: 44px;
-  height: 44px;
-  color: var(--green);
-  background: #e8c486;
-  border-radius: 999px;
-}
-
-.track {
-  position: relative;
-  display: block;
-  height: 2px;
-  background: rgba(232, 196, 134, .75);
-}
-
-.track span {
-  position: absolute;
-  top: 50%;
-  left: 48%;
-  width: 9px;
-  height: 9px;
-  background: #e8c486;
-  border-radius: 999px;
-  transform: translate(-50%, -50%);
-}
-
-.heart {
-  font-size: 1.5rem;
-}
-
 .modal {
   position: fixed;
   inset: 0;
@@ -570,6 +396,10 @@ input {
   display: grid;
   gap: 8px;
   font-size: .95rem;
+}
+
+.rsvp-form [hidden] {
+  display: none !important;
 }
 
 .rsvp-form input[type="text"],
@@ -665,41 +495,25 @@ input {
     border-width: 0;
   }
 
-  .topbar {
-    justify-content: space-between;
-  }
-
   .civil-nav {
-    justify-content: flex-start;
-    gap: 18px;
-    overflow-x: auto;
-    padding-bottom: 6px;
-  }
-
-  .nav-sprig {
-    display: none;
+    gap: 10px;
   }
 
   .civil-hero {
-    min-height: 620px;
-    padding-inline: 22px;
+    min-height: auto;
+    padding: 18px 12px 64px;
   }
 
-  .hero-flower-left,
-  .hero-flower-right {
-    width: 180px;
-    opacity: .8;
+  .hero-title {
+    width: min(100%, 520px);
   }
 
-  .hero-building {
-    right: -42px;
-    width: 250px;
-    opacity: .38;
+  .homepage-title {
+    width: 100%;
   }
 
   .timeline,
-  .info-grid,
-  .fun-facts {
+  .info-grid {
     grid-template-columns: 1fr;
   }
 
@@ -707,63 +521,32 @@ input {
     gap: 28px;
   }
 
-  .timeline-art {
-    grid-template-columns: repeat(4, 1fr);
-    gap: 10px;
-  }
-
-  .timeline-art img {
-    min-height: 76px;
-  }
-
   .info-grid article + article {
     border-top: 1px solid rgba(63, 76, 49, .32);
     border-left: 0;
   }
 
-  .rsvp-flower,
-  .rsvp-mic {
-    opacity: .32;
-  }
-
-  .fun-facts {
-    padding: 42px 28px;
-    text-align: center;
-  }
-
-  .record-player {
-    margin: 0 auto;
-  }
 }
 
 @media (max-width: 520px) {
-  .topbar {
-    padding-inline: 18px;
-  }
-
   .civil-nav {
     font-size: .7rem;
   }
 
-  .menu-button {
-    width: 42px;
-    flex: 0 0 auto;
+  .civil-nav a {
+    width: min(100%, 280px);
   }
 
   .civil-hero {
-    min-height: 560px;
+    min-height: auto;
   }
 
-  .eyebrow {
-    font-size: 1rem;
+  .homepage-title {
+    width: 100%;
   }
 
   .itinerary h2 {
     padding-inline: 36px;
-  }
-
-  .timeline-art {
-    display: none;
   }
 
   .timeline-list {
@@ -774,8 +557,4 @@ input {
     line-height: 1.8;
   }
 
-  .audio-row {
-    grid-template-columns: 42px 1fr 34px;
-    gap: 12px;
-  }
 }
