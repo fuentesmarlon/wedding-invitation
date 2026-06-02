@@ -4,7 +4,7 @@
   --ink: #293323;
   --green: #3f4c31;
   --gold: #b58a4a;
-  --rose: #ae5c52;
+  --rose: #e06d67;
   --cream: #fff5df;
 }
 
@@ -41,9 +41,7 @@ input {
   width: min(100%, 1024px);
   margin: 0 auto;
   overflow: hidden;
-  background:
-    linear-gradient(rgba(244, 234, 214, .9), rgba(244, 234, 214, .9)),
-    repeating-linear-gradient(45deg, rgba(95, 76, 47, .08) 0 1px, transparent 1px 7px);
+  background: var(--paper);
   border: 8px solid #f8ecd4;
   box-shadow: 0 24px 80px rgba(0, 0, 0, .35);
 }
@@ -54,6 +52,7 @@ input {
   align-items: center;
   justify-content: center;
   gap: 12px;
+  margin-top: clamp(-22px, -4vw, -12px);
   width: 100%;
   font-family: "Cinzel", serif;
   font-size: clamp(.92rem, 2vw, 1.15rem);
@@ -82,8 +81,8 @@ input {
   position: relative;
   display: grid;
   place-items: center;
-  min-height: 680px;
-  padding: 34px 24px 70px;
+  min-height: 900px;
+  padding: 80px 30px 64px;
   text-align: center;
 }
 
@@ -91,14 +90,15 @@ input {
   position: relative;
   z-index: 2;
   display: grid;
-  gap: 28px;
+  gap: 12px;
   justify-items: center;
-  width: min(100%, 640px);
+  width: 100%;
 }
 
 .homepage-title {
   display: block;
-  width: min(100%, 540px);
+  width: min(92%, 720px);
+  max-height: 760px;
   height: auto;
   object-fit: contain;
 }
@@ -167,17 +167,49 @@ input {
   font-weight: 700;
 }
 
-.story {
-  padding: 28px 34px;
+.postal-section {
+  display: grid;
+  gap: 18px;
+  justify-items: center;
+  padding: 46px 34px;
   border-top: 1px solid rgba(63, 76, 49, .32);
   border-bottom: 1px solid rgba(63, 76, 49, .32);
-  text-align: center;
 }
 
-.story p {
-  max-width: 650px;
-  margin: 0 auto;
-  line-height: 1.7;
+.postal-link {
+  display: block;
+  width: min(100%, 720px);
+  transition: filter .18s ease, transform .18s ease;
+}
+
+.postal-link:hover,
+.postal-link:focus-visible {
+  filter: drop-shadow(4px 6px 0 rgba(63, 76, 49, .18));
+  transform: translateY(-3px);
+}
+
+.postal-image {
+  display: block;
+  width: 100%;
+  height: auto;
+  object-fit: contain;
+}
+
+.postal-directions {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 44px;
+  color: var(--green);
+  font-family: "Cinzel", serif;
+  font-size: clamp(1.1rem, 2.6vw, 1.45rem);
+  font-weight: 800;
+  text-transform: uppercase;
+}
+
+.postal-directions:hover,
+.postal-directions:focus-visible {
+  color: var(--rose);
 }
 
 .itinerary {
@@ -502,7 +534,7 @@ input {
 
   .civil-hero {
     min-height: auto;
-    padding: 18px 12px 64px;
+    padding: 56px 18px 42px;
   }
 
   .hero-title {
@@ -510,7 +542,16 @@ input {
   }
 
   .homepage-title {
-    width: 100%;
+    width: min(92vw, 390px);
+    max-height: 620px;
+  }
+
+  .postal-section {
+    padding: 36px 20px;
+  }
+
+  .postal-link {
+    width: min(100%, 520px);
   }
 
   .timeline,
@@ -544,7 +585,7 @@ input {
   }
 
   .homepage-title {
-    width: 100%;
+    width: min(92vw, 390px);
   }
 
   .itinerary h2 {
