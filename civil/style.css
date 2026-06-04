@@ -47,15 +47,18 @@ input {
 }
 
 .civil-nav {
-  display: flex;
-  flex-wrap: wrap;
+  z-index: 3;
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
   align-items: center;
   justify-content: center;
   gap: 12px;
-  margin-top: clamp(-22px, -4vw, -12px);
-  width: 100%;
+  grid-column: 1;
+  grid-row: 2;
+  width: min(100%, 350px);
+  margin-top: 16px;
   font-family: "Cinzel", serif;
-  font-size: clamp(.92rem, 2vw, 1.15rem);
+  font-size: clamp(.62rem, 1vw, .78rem);
   font-weight: 800;
   text-transform: uppercase;
 }
@@ -64,12 +67,13 @@ input {
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  min-height: 48px;
-  padding: 0 24px;
+  min-height: 38px;
+  padding: 0 10px;
   color: var(--cream);
   background: var(--green);
   border: 1px solid rgba(255, 245, 223, .7);
   line-height: 1;
+  text-align: center;
 }
 
 .civil-nav a:hover,
@@ -81,8 +85,8 @@ input {
   position: relative;
   display: grid;
   place-items: center;
-  min-height: 900px;
-  padding: 80px 30px 64px;
+  min-height: 520px;
+  padding: 24px 36px 48px;
   text-align: center;
 }
 
@@ -90,17 +94,61 @@ input {
   position: relative;
   z-index: 2;
   display: grid;
-  gap: 12px;
-  justify-items: center;
+  grid-template-columns: minmax(260px, 370px) minmax(0, 1fr);
+  grid-template-rows: auto auto;
+  gap: 0;
+  align-items: end;
+  justify-items: start;
   width: 100%;
 }
 
 .homepage-title {
+  grid-column: 1;
+  grid-row: 1;
   display: block;
-  width: min(92%, 720px);
-  max-height: 760px;
+  width: min(100%, 360px);
+  max-height: 390px;
   height: auto;
   object-fit: contain;
+  object-position: center;
+}
+
+.hero-art-wrap {
+  display: contents;
+}
+
+.hero-art {
+  grid-column: 2;
+  grid-row: 1 / span 2;
+  align-self: end;
+  justify-self: center;
+  display: block;
+  width: min(112%, 720px);
+  height: auto;
+  object-position: center;
+  pointer-events: none;
+}
+
+.hero-directions {
+  display: none;
+  align-items: center;
+  justify-content: center;
+  min-height: 44px;
+  margin-top: 14px;
+  padding: 0 22px;
+  color: var(--green);
+  border: 1px solid rgba(63, 76, 49, .7);
+  font-family: "Cinzel", serif;
+  font-size: clamp(1rem, 2.4vw, 1.3rem);
+  font-weight: 800;
+  text-transform: uppercase;
+}
+
+.hero-directions:hover,
+.hero-directions:focus-visible {
+  color: var(--cream);
+  background: var(--rose);
+  border-color: var(--rose);
 }
 
 .eyebrow,
@@ -165,51 +213,6 @@ input {
 .invitation {
   font-style: italic;
   font-weight: 700;
-}
-
-.postal-section {
-  display: grid;
-  gap: 18px;
-  justify-items: center;
-  padding: 46px 34px;
-  border-top: 1px solid rgba(63, 76, 49, .32);
-  border-bottom: 1px solid rgba(63, 76, 49, .32);
-}
-
-.postal-link {
-  display: block;
-  width: min(100%, 720px);
-  transition: filter .18s ease, transform .18s ease;
-}
-
-.postal-link:hover,
-.postal-link:focus-visible {
-  filter: drop-shadow(4px 6px 0 rgba(63, 76, 49, .18));
-  transform: translateY(-3px);
-}
-
-.postal-image {
-  display: block;
-  width: 100%;
-  height: auto;
-  object-fit: contain;
-}
-
-.postal-directions {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  min-height: 44px;
-  color: var(--green);
-  font-family: "Cinzel", serif;
-  font-size: clamp(1.1rem, 2.6vw, 1.45rem);
-  font-weight: 800;
-  text-transform: uppercase;
-}
-
-.postal-directions:hover,
-.postal-directions:focus-visible {
-  color: var(--rose);
 }
 
 .itinerary {
@@ -530,28 +533,54 @@ input {
 
   .civil-nav {
     gap: 10px;
+    grid-column: auto;
+    grid-row: auto;
+    width: min(92%, 520px);
+    margin-top: 10px;
+    font-size: clamp(.72rem, 3vw, .9rem);
+  }
+
+  .civil-nav a {
+    min-height: 48px;
   }
 
   .civil-hero {
     min-height: auto;
-    padding: 56px 18px 42px;
+    padding: 24px 0 42px;
   }
 
   .hero-title {
-    width: min(100%, 520px);
+    grid-template-columns: 1fr;
+    grid-template-rows: auto;
+    width: 100%;
+    justify-items: center;
   }
 
   .homepage-title {
-    width: min(92vw, 390px);
+    width: min(92%, 390px);
     max-height: 620px;
   }
 
-  .postal-section {
-    padding: 36px 20px;
+  .hero-art-wrap {
+    display: grid;
+    justify-items: center;
+    width: min(100%, 520px);
+    margin-top: -12px;
   }
 
-  .postal-link {
-    width: min(100%, 520px);
+  .hero-art {
+    grid-column: auto;
+    grid-row: auto;
+    width: 100%;
+    opacity: 1;
+  }
+
+  .hero-directions {
+    display: inline-flex;
+    min-height: 42px;
+    margin-top: 12px;
+    padding: 0 18px;
+    font-size: clamp(.9rem, 3.8vw, 1.05rem);
   }
 
   .timeline,
@@ -572,12 +601,12 @@ input {
 
 @media (max-width: 520px) {
   .civil-nav {
-    font-size: 1rem;
+    font-size: clamp(.64rem, 3.2vw, .78rem);
   }
 
   .civil-nav a {
-    width: min(100%, 280px);
     min-height: 46px;
+    padding: 0 8px;
   }
 
   .civil-hero {
