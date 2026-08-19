@@ -318,6 +318,19 @@ input {
   line-height: 1.55;
 }
 
+.dress-code-image {
+  display: block;
+  width: min(100%, 330px);
+  height: auto;
+  margin: 24px auto 0;
+}
+
+.gifts {
+  display: grid;
+  align-content: center;
+  justify-items: center;
+}
+
 .button,
 .rsvp-button {
   display: inline-flex;
