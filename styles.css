@@ -264,7 +264,8 @@ a {
   background: rgba(16, 32, 36, .72);
 }
 
-.rsvp-form {
+.rsvp-form,
+.rsvp-expired-panel {
   position: relative;
   z-index: 1;
   display: grid;
@@ -280,7 +281,8 @@ a {
   transition: opacity .26s ease, transform .26s ease;
 }
 
-.modal.is-open .rsvp-form {
+.modal.is-open .rsvp-form,
+.modal.is-open .rsvp-expired-panel {
   opacity: 1;
   transform: translateY(0) scale(1);
 }
@@ -322,13 +324,42 @@ a {
   height: auto;
 }
 
-.rsvp-form h2 {
+.rsvp-form h2,
+.rsvp-expired-panel h2 {
   margin: 0 42px 6px 0;
   color: var(--rose);
   font-family: "Cinzel", serif;
   font-size: 1.7rem;
   font-weight: 800;
   text-transform: uppercase;
+}
+
+.rsvp-expired-panel p {
+  margin: 0;
+  line-height: 1.65;
+}
+
+.rsvp-contact-list {
+  display: grid;
+  gap: 12px;
+  margin: 0;
+  padding: 18px 20px;
+  background: rgba(255, 243, 217, .72);
+  border: 2px solid rgba(149, 72, 45, .35);
+  list-style: none;
+}
+
+.rsvp-contact-list a {
+  color: #8f3f3a;
+  font-weight: 700;
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+
+.rsvp-expired-note {
+  color: var(--rose);
+  font-weight: 700;
+  text-align: center;
 }
 
 .rsvp-form label {

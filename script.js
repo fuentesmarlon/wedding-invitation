@@ -1,4 +1,5 @@
 const modal = document.querySelector("[data-rsvp-modal]");
+const rsvpExpiredModal = document.querySelector("[data-rsvp-expired-modal]");
 const dressCodeModal = document.querySelector("[data-dress-code-modal]");
 const giftsModal = document.querySelector("[data-gifts-modal]");
 const form = document.querySelector("[data-rsvp-form]");
@@ -10,8 +11,13 @@ const childrenCount = document.querySelector("[data-children-count]");
 const childrenInput = childrenCount.querySelector("input");
 const companionInput = plusOneField.querySelector("input");
 const rsvpEndpoint = "https://script.google.com/macros/s/AKfycbxWto4pLmCZ7-obu_pbrtI5As19Ikhdai8QX5NOHjSKl7dyh9ieby1Ygg8MQKSmJfjGHg/exec";
+const rsvpDeadline = new Date("2026-10-01T00:00:00-06:00");
 const queryParams = new URLSearchParams(window.location.search);
 const allowsPlusOne = form.dataset.allowPlusOne === "true" || queryParams.get("plsne")?.toLowerCase() === "true";
+
+function isRsvpExpired(now = new Date()) {
+  return now >= rsvpDeadline;
+}
 
 function getCleanValue(input) {
   return input.value.trim();
@@ -53,10 +59,26 @@ function submitToGoogleSheets(payload) {
 }
 
 function openModal() {
+  if (isRsvpExpired()) {
+    openRsvpExpiredModal();
+    return;
+  }
+
   setPlusOneVisibility();
   modal.classList.add("is-open");
   modal.setAttribute("aria-hidden", "false");
   form.elements.guestName.focus();
+}
+
+function openRsvpExpiredModal() {
+  rsvpExpiredModal.classList.add("is-open");
+  rsvpExpiredModal.setAttribute("aria-hidden", "false");
+  rsvpExpiredModal.querySelector("[data-close-rsvp-expired]").focus();
+}
+
+function closeRsvpExpiredModal() {
+  rsvpExpiredModal.classList.remove("is-open");
+  rsvpExpiredModal.setAttribute("aria-hidden", "true");
 }
 
 function openDressCodeModal() {
@@ -127,6 +149,10 @@ document.querySelectorAll("[data-close-rsvp]").forEach((button) => {
   button.addEventListener("click", closeModal);
 });
 
+document.querySelectorAll("[data-close-rsvp-expired]").forEach((button) => {
+  button.addEventListener("click", closeRsvpExpiredModal);
+});
+
 document.querySelectorAll("[data-close-dress-code]").forEach((button) => {
   button.addEventListener("click", closeDressCodeModal);
 });
@@ -147,6 +173,13 @@ childrenCheckbox.addEventListener("change", () => {
 
 form.addEventListener("submit", async (event) => {
   event.preventDefault();
+
+  if (isRsvpExpired()) {
+    closeModal({ showDressCode: false });
+    openRsvpExpiredModal();
+    return;
+  }
+
   setLoadingMessage();
 
   const payload = {
@@ -172,6 +205,11 @@ form.addEventListener("submit", async (event) => {
 document.addEventListener("keydown", (event) => {
   if (event.key === "Escape" && modal.classList.contains("is-open")) {
     closeModal();
+    return;
+  }
+
+  if (event.key === "Escape" && rsvpExpiredModal.classList.contains("is-open")) {
+    closeRsvpExpiredModal();
     return;
   }
 
