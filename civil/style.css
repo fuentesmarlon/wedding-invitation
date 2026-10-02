@@ -363,7 +363,7 @@ input {
   overflow: hidden;
   padding: 48px 34px;
   color: #f9ead2;
-  background: var(--rose);
+  background: var(--green);
   text-align: center;
 }
 
@@ -383,7 +383,9 @@ input {
 }
 
 .rsvp-button {
-  color: var(--rose);
+  margin: 20px 0 28px;
+  padding: 0 40px;
+  color: var(--green);
   background: var(--cream);
 }
 
@@ -392,8 +394,8 @@ input {
   color: var(--cream);
 }
 
-.contact {
-  margin-top: 28px;
+.rsvp .contact {
+  margin: 0;
 }
 
 .modal {
