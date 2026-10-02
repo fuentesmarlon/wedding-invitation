@@ -11,12 +11,16 @@ const childrenCount = document.querySelector("[data-children-count]");
 const childrenInput = childrenCount.querySelector("input");
 const companionInput = plusOneField.querySelector("input");
 const rsvpEndpoint = "https://script.google.com/macros/s/AKfycbxWto4pLmCZ7-obu_pbrtI5As19Ikhdai8QX5NOHjSKl7dyh9ieby1Ygg8MQKSmJfjGHg/exec";
-const rsvpDeadline = new Date("2026-10-01T00:00:00-06:00");
+const rsvpDeadline = form.dataset.rsvpDeadline
+  ? new Date(form.dataset.rsvpDeadline)
+  : null;
 const queryParams = new URLSearchParams(window.location.search);
 const allowsPlusOne = form.dataset.allowPlusOne === "true" || queryParams.get("plsne")?.toLowerCase() === "true";
 
 function isRsvpExpired(now = new Date()) {
-  return now >= rsvpDeadline;
+  return rsvpDeadline instanceof Date
+    && !Number.isNaN(rsvpDeadline.getTime())
+    && now >= rsvpDeadline;
 }
 
 function getCleanValue(input) {
@@ -71,12 +75,21 @@ function openModal() {
 }
 
 function openRsvpExpiredModal() {
+  if (!rsvpExpiredModal) {
+    return false;
+  }
+
   rsvpExpiredModal.classList.add("is-open");
   rsvpExpiredModal.setAttribute("aria-hidden", "false");
   rsvpExpiredModal.querySelector("[data-close-rsvp-expired]").focus();
+  return true;
 }
 
 function closeRsvpExpiredModal() {
+  if (!rsvpExpiredModal) {
+    return;
+  }
+
   rsvpExpiredModal.classList.remove("is-open");
   rsvpExpiredModal.setAttribute("aria-hidden", "true");
 }
@@ -208,7 +221,7 @@ document.addEventListener("keydown", (event) => {
     return;
   }
 
-  if (event.key === "Escape" && rsvpExpiredModal.classList.contains("is-open")) {
+  if (event.key === "Escape" && rsvpExpiredModal?.classList.contains("is-open")) {
     closeRsvpExpiredModal();
     return;
   }

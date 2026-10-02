@@ -417,6 +417,7 @@ input {
 }
 
 .rsvp-form,
+.rsvp-expired-panel,
 .image-modal-panel {
   position: relative;
   z-index: 1;
@@ -434,11 +435,44 @@ input {
   gap: 18px;
 }
 
-.rsvp-form h2 {
+.rsvp-expired-panel {
+  display: grid;
+  gap: 18px;
+}
+
+.rsvp-form h2,
+.rsvp-expired-panel h2 {
   margin: 0;
   font-family: "Cinzel", serif;
   text-align: center;
   text-transform: uppercase;
+}
+
+.rsvp-expired-panel p {
+  margin: 0;
+  line-height: 1.65;
+}
+
+.rsvp-contact-list {
+  display: grid;
+  gap: 12px;
+  margin: 0;
+  padding: 18px 20px;
+  background: #fff9ee;
+  border: 1px solid rgba(63, 76, 49, .35);
+  list-style: none;
+}
+
+.rsvp-contact-list a {
+  color: var(--green);
+  font-weight: 700;
+  text-underline-offset: 3px;
+}
+
+.rsvp-expired-note {
+  color: var(--green);
+  font-weight: 700;
+  text-align: center;
 }
 
 .rsvp-form label {
